@@ -1,3 +1,4 @@
+import os
 import requests
 from bs4 import BeautifulSoup
 import smtplib
@@ -36,8 +37,8 @@ html = f"""
 
 
 ## Mail contecnt
-sender_email = "fakee.inc@gmail.com"
-recepient = "sholafunmiademilua@gmail.com"
+sender_email = os.environ["EMAIL_SENDER"]
+recepient = os.environ["EMAIL_RECEIVER"]
 subject = "My Daily World News Scraped from BBC"
 
 mail = EmailMessage()
@@ -49,7 +50,7 @@ mail.add_alternative(html, subtype="html")
 ## Smtp server
 smtp_server = "smtp.gmail.com"
 port = 587
-smtp_passwd = "tpgforxzzkyiuxfw"
+smtp_passwd = os.environ["SMTP_PASSWORD"]
 
 server = smtplib.SMTP(smtp_server, port)
 server.starttls()
